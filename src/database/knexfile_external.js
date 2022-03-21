@@ -1,8 +1,8 @@
 var config = {
     client: 'mysql',
     connection: {
-        port: 3306,
-        host: 'db',
+        port: 3308,
+        host: 'localhost',
         user: 'root',
         password: 'root',
         database: 'sequre_db'

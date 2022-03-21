@@ -6,15 +6,22 @@
   "scripts": {
     "test": "mocha \"./{,!(node_modules)/**/}*.test.js\"",
     "start": "nodemon src/index.js",
-    "migrate:make": "knex --knexfile src/database/knexfile.js migrate:make"
+    "migrate:make": "knex --knexfile src/database/knexfile_external.js migrate:make",
+    "migrate:up": "knex --knexfile src/database/knexfile_external.js migrate:up",
+    "migrate:rollback": "knex --knexfile src/database/knexfile_external.js migrate:rollback",
+    "migrate:latest": "knex --knexfile src/database/knexfile_external.js migrate:latest",
+    "import": "node src/utils/importData.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.1",
     "express": "^4.17.3",
     "knex": "^1.0.4",
+    "moment": "^2.29.1",
     "mysql": "^2.18.1",
+    "node-cron": "^3.0.0",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {

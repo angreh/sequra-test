@@ -1,7 +1,9 @@
 const express   = require( 'express' ),
       app       = express(),
       path      = require( 'path' ),
-      fs        = require( 'fs' )
+      fs        = require( 'fs' ),
+      cron      = require( 'node-cron' ),
+      payer     = require( './models/disbursements' )
 
 app.use( express.json() )
 app.use( express.urlencoded({ extended: true }) )
@@ -21,6 +23,10 @@ app.get( '/', ( req, res ) => {
     res.send( {status:true})
 })
 // routes : end
+
+cron.schedule( '0 0 * * 1', async () => {
+    payer.pay()
+})
 
 app.listen( 8080, () => {
     console.log('Listening on http://localhost:8080/')
